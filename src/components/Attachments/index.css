@@ -1,0 +1,33 @@
+.attachments {
+    padding: 0;
+    margin: 0;
+}
+
+.attachment {
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+    padding: 5px;
+    margin: 0 10px 10px 0;
+}
+
+.file-label {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.file-label::before {
+    position: relative;
+    display: inline-block;
+    top: 2px;
+    margin-right: .25rem;
+    background: url('./clip.svg') no-repeat center;
+    width: 17px;
+    height: 15px;
+    content: '';
+}
+
+#file-input {
+    display: none;
+}
