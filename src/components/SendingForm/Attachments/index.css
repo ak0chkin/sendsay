@@ -1,9 +1,9 @@
-.attaches {
+.attachments {
     padding: 0;
     margin: 0;
 }
 
-.attach {
+.attachment {
     display: inline-block;
     border-radius: 5px;
     border: 1px solid #dddddd;
@@ -22,7 +22,7 @@
     display: inline-block;
     top: 2px;
     margin-right: .25rem;
-    background: url('./clip.svg') no-repeat center;
+    background: url('clip.svg') no-repeat center;
     width: 17px;
     height: 15px;
     content: '';
