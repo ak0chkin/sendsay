@@ -21,11 +21,11 @@ class SendingForm extends React.PureComponent {
     }
 
     handleUpload(e) {
-        const reader = new FileReader();
         const file = e.target.files[0];
-        reader.onloadend = () => {
+        const reader = new FileReader();
+        reader.onload = () => {
             this.setState(state => ({
-                'letter': {...state.letter, 'attaches': [...state.letter.attaches, file]}
+                'letter': {...state.letter, 'attaches': [...state.letter.attaches, {'name': file.name, 'content': reader.result, 'encoding': 'base64'}]}
             }));
         }
         reader.readAsDataURL(file);
