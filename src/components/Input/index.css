@@ -2,16 +2,20 @@
     display: block;
     color: rgba(0, 0, 0, 0.6);
 }
+
 .field {
     border-radius: 5px;
     border: 1px solid #dddddd;
     width: calc(100% - 4px);
 }
+
 .left {
     border-radius: 5px 0 0 5px !important;
     width: calc((100% - 8px) / 2) !important;
 }
+
 .right {
     border-radius: 0 5px 5px 0 !important;
-    width: calc((100% - 8px) / 2) !important;
+    width: calc((100% - 6px) / 2) !important;
+    margin-left: -1px;
 }

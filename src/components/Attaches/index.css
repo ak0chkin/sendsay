@@ -1,9 +1,9 @@
-.attachments {
+.attaches {
     padding: 0;
     margin: 0;
 }
 
-.attachment {
+.attach {
     display: inline-block;
     border-radius: 5px;
     border: 1px solid #dddddd;
