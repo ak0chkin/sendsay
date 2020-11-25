@@ -7,11 +7,13 @@ import {UPDATE_FIELD} from "../../constants/actionTypes";
 import {connect} from "react-redux";
 
 const updateField = (field) => ({type: UPDATE_FIELD, payload: field});
+const updateDisplay = (hidden) => ({type: UPDATE_FIELD, payload: hidden});
 
 class SendingForm extends React.Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
+        this.handleInput = this.handleInput.bind(this);
     }
 
     handleInput(e) {
@@ -19,9 +21,9 @@ class SendingForm extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="sending-form">
+                <DragZone/>
                 <div className="input-field">
                     <label className="label">От кого</label>
                     <Input type="input" name="from.name" value={this.props['from.name']} placeholder="Имя"
@@ -49,7 +51,6 @@ class SendingForm extends React.Component {
                 <div className="input-field">
                     <Attachments/>
                 </div>
-                <DragZone/>
             </div>
         );
     }
@@ -62,6 +63,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateFieldAction: field => dispatch(updateField(field)),
+        updateDisplay: hidden => dispatch(updateDisplay(hidden))
     }
 }
 

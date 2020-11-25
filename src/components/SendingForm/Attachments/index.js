@@ -28,7 +28,6 @@ class Attachments extends React.Component {
     }
 
     render() {
-        console.log(this.props.attachments);
         const attachments = this.props.attachments.map(item => (
             <li key={item.name} className="attachment">{item.name}</li>));
         return (
