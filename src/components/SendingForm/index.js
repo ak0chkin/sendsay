@@ -2,12 +2,15 @@ import React from 'react';
 import './index.css';
 import Input from "../Input";
 import Attaches from "../Attaches";
+import DragZone from "../DragZone";
 
 class SendingForm extends React.PureComponent {
     constructor(props) {
         super(props);
         this.handleUpload = this.handleUpload.bind(this);
+        this.handleFile = this.handleFile.bind(this);
         this.handleInput = this.handleInput.bind(this);
+
         this.state = {
             'letter': {
                 'subject': '',
@@ -22,13 +25,22 @@ class SendingForm extends React.PureComponent {
 
     handleUpload(e) {
         const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = () => {
-            this.setState(state => ({
-                'letter': {...state.letter, 'attaches': [...state.letter.attaches, {'name': file.name, 'content': reader.result, 'encoding': 'base64'}]}
-            }));
+        this.handleFile(file);
+    }
+    handleFile(file) {
+        if (this.validateFile(file)) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                this.setState(state => ({
+                    'letter': {...state.letter, 'attaches': [...state.letter.attaches, {'name': file.name, 'content': reader.result, 'encoding': 'base64'}]}
+                }));
+            }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(file);
+    }
+    validateFile (file) {
+        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/x-icon'];
+        return validTypes.indexOf(file.type) !== -1;
     }
 
     handleInput(e) {
@@ -81,6 +93,7 @@ class SendingForm extends React.PureComponent {
                 <div className="input-field">
                     <Attaches onChange={this.handleUpload} attaches={this.state.letter.attaches}/>
                 </div>
+                <DragZone handleFile={this.handleFile} />
             </div>
         );
     }
