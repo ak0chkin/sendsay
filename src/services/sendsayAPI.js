@@ -1,8 +1,7 @@
 import Sendsay from "sendsay-api";
 
 const sendsay = new Sendsay({apiKey: '19G37aBHzIr26V1NWF5kkqaVBguhD60740UgZmn_jXsLQrNuQkbPr79DPCqCu-5T2lBk5se4482wicksEcxteDx7M'});
-
-export const issueSendTest = (fields) => {
+export const issueSendTest = async (fields) => {
     const requestBody = {
         'action': 'issue.send.test',
         'letter': {
@@ -18,13 +17,20 @@ export const issueSendTest = (fields) => {
             fields['mca']
         ]
     }
-    return sendsay.request(requestBody);
+    const response = await sendsay.request(requestBody);
+    return response;
 }
 
-export const trackGet = (trackId) => {
+export const trackGet = async (trackId) => {
     const requestBody = {
         'action': 'track.get',
         'id': trackId
     }
-    return sendsay.request(requestBody);
+    const response = await sendsay.request(requestBody);
+    if (response.obj['status'] <= -1) {
+        return response;
+    }
+    else {
+        return await trackGet(trackId);
+    }
 }

@@ -21,12 +21,35 @@
     border-bottom: 1px solid #DDDDDD;
 }
 
+.messages-table__th:first-child {
+    width: 20%;
+}
+
+.messages-table__td:first-child {
+    width: 20%;
+}
+
 .messages-table__th:last-child {
     text-align: end;
+    width: 20%;
 }
 
 .messages-table__td:last-child {
     text-align: end;
+    width: 20%;
+}
+
+.messages-table__td_sent {
+    color: #03A100;
+;
+}
+
+.messages-table__td_queue {
+    color: #949494;
+}
+
+.messages-table__td_error {
+    color: #FF6666;
 }
 
 h2 {

@@ -1,9 +1,9 @@
 import React from 'react';
 import './index.css';
 import {connect} from "react-redux";
-import {trackGet} from "../../services/sendsayAPI";
 
 class Messages extends React.Component {
+    // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
 
@@ -14,7 +14,16 @@ class Messages extends React.Component {
             <tr className="messages-table__tr" key={item.trackId}>
                 <td className="messages-table__td">{item.date.toDateString()}</td>
                 <td className="messages-table__td">{item.subject}</td>
-                <td className="messages-table__td">{item.trackId}</td>
+                <td className={`messages-table__td
+                ${
+                    item.status === 'Отправлено'
+                        ? 'messages-table__td_sent' :
+                        item.status === 'В очереди'
+                            ? 'messages-table__td_queue'
+                            : 'messages-table__td_error'
+                }`}>
+                    {item.status}
+                </td>
             </tr>
         ));
         const table = (

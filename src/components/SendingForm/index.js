@@ -3,12 +3,13 @@ import './index.css';
 import Input from "./Input";
 import Attachments from "./Attachments";
 import DragZone from "./DragZone";
-import {ADD_MESSAGE, UPDATE_FIELD} from "../../constants/actionTypes";
+import {ADD_MESSAGE, UPDATE_FIELD, UPDATE_STATUS} from "../../constants/actionTypes";
 import {connect} from "react-redux";
 import {issueSendTest, trackGet} from "../../services/sendsayAPI";
 
 const updateField = (field) => ({type: UPDATE_FIELD, payload: field});
 const addMessage = (message) => ({type: ADD_MESSAGE, payload: message});
+const updateStatus = (status) => ({type: UPDATE_STATUS, payload: status});
 
 class SendingForm extends React.Component {
     // eslint-disable-next-line no-useless-constructor
@@ -26,7 +27,11 @@ class SendingForm extends React.Component {
         e.preventDefault();
         issueSendTest(this.props).then(data => {
             const trackId =  data['track.id'];
-            this.props.addMessageAction({date: new Date(), subject: this.props['subject'], trackId: trackId});
+            this.props.addMessageAction({'date': new Date(), 'subject': this.props['subject'], 'status': 'В очереди', 'trackId': trackId});
+            trackGet(trackId).then(data => {
+                console.log(data);
+                this.props.updateStatusAction({'trackId': trackId, 'status': data.obj['status'] === '-1' ? 'Отправлено' : 'Ошибка'})
+            });
         });
     }
 
@@ -73,7 +78,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateFieldAction: field => dispatch(updateField(field)),
-        addMessageAction: message => dispatch(addMessage(message))
+        addMessageAction: message => dispatch(addMessage(message)),
+        updateStatusAction: status => dispatch(updateStatus(status))
     }
 }
 
