@@ -8,10 +8,10 @@ function Input(props) {
             {props.type === 'input' ?
                 <input type="text" id={props.id} placeholder={props.placeholder}
                        value={props.value}
-                       className={`input-group__field ${props.position ? props.position : ''}`}
+                       className={`input-group__field input-group__field_input ${props.position ? props.position : ''}`}
                        onChange={props.onChange}/> :
-                <textarea id={props.id} placeholder={props.placeholder} value={props.value}
-                          className={`input-group__field`}
+                <textarea rows="3" id={props.id} placeholder={props.placeholder} value={props.value}
+                          className={`input-group__field input-group__field_textarea`}
                           onChange={props.onChange}/>}
         </div>
     );

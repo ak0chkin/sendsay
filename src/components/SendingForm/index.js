@@ -22,7 +22,7 @@ class SendingForm extends React.Component {
 
     render() {
         return (
-            <div className="sending-form">
+            <form className="sending-form">
                 <DragZone/>
                 <div className="input-field">
                     <Input type="input" id="from.name" value={this.props['from.name']} placeholder="Имя" label="От кого"
@@ -47,7 +47,10 @@ class SendingForm extends React.Component {
                 <div className="input-field input-field_column">
                     <Attachments/>
                 </div>
-            </div>
+                <div className="input-field">
+                    <button type="submit" className="btn-send">Отправить</button>
+                </div>
+            </form>
         );
     }
 }
