@@ -31,7 +31,7 @@
 }
 
 .input-group__field_textarea {
-
+    resize: none;
 }
 
 .input-group__field_left {

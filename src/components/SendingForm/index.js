@@ -5,6 +5,7 @@ import Attachments from "./Attachments";
 import DragZone from "./DragZone";
 import {UPDATE_FIELD} from "../../constants/actionTypes";
 import {connect} from "react-redux";
+import Sendsay from "sendsay-api";
 
 const updateField = (field) => ({type: UPDATE_FIELD, payload: field});
 const updateDisplay = (hidden) => ({type: UPDATE_FIELD, payload: hidden});
@@ -15,6 +16,9 @@ class SendingForm extends React.Component {
         super(props);
         this.handleInput = this.handleInput.bind(this);
     }
+    componentDidMount() {
+
+    }
 
     handleInput(e) {
         this.props.updateFieldAction({name: e.target.id, value: e.target.value});
@@ -24,6 +28,7 @@ class SendingForm extends React.Component {
         return (
             <form className="sending-form">
                 <DragZone/>
+                <h1>Отправлялка сообщений</h1>
                 <div className="input-field">
                     <Input type="input" id="from.name" value={this.props['from.name']} placeholder="Имя" label="От кого"
                            onChange={this.handleInput} position="input-group__field_left"/>
@@ -37,11 +42,11 @@ class SendingForm extends React.Component {
                            onChange={this.handleInput} position="input-group__field_right"/>
                 </div>
                 <div className="input-field">
-                    <Input type="input" is="subject" value={this.props['subject']} placeholder="Тема"
+                    <Input type="input" is="subject" value={this.props['subject']}
                            label="Тема письма" onChange={this.handleInput}/>
                 </div>
                 <div className="input-field">
-                    <Input type="textarea" id="message" value={this.props['message']} placeholder="Сообщение"
+                    <Input type="textarea" id="message" value={this.props['message']}
                            label="Сообщение" onChange={this.handleInput}/>
                 </div>
                 <div className="input-field input-field_column">
