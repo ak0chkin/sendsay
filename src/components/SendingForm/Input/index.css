@@ -1,21 +1,22 @@
-.label {
-    display: block;
+.input-group {
+    flex: 1 1;
+}
+
+.input-group__label {
+    display: inline-block;
     color: rgba(0, 0, 0, 0.6);
 }
 
-.field {
+.input-group__field {
     border-radius: 5px;
     border: 1px solid #dddddd;
-    width: calc(100% - 4px);
+    width: 100%;
 }
 
-.left {
-    border-radius: 5px 0 0 5px !important;
-    width: calc((100% - 8px) / 2) !important;
+.input-group__field_left {
+    border-radius: 5px 0 0 5px;
 }
 
-.right {
-    border-radius: 0 5px 5px 0 !important;
-    width: calc((100% - 6px) / 2) !important;
-    margin-left: -1px;
+.input-group__field_right {
+    border-radius: 0 5px 5px 0;
 }

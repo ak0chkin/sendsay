@@ -3,16 +3,17 @@ import './index.css';
 
 function Input(props) {
     return (
-        <>
+        <div className="input-group">
+            <label htmlFor={props.id} className="input-group__label">{props.label}</label>
             {props.type === 'input' ?
-                <input type="text" name={props.name} placeholder={props.placeholder}
+                <input type="text" id={props.id} placeholder={props.placeholder}
                        value={props.value}
-                       className={`field ${props.position ? props.position : ''}`}
+                       className={`input-group__field ${props.position ? props.position : ''}`}
                        onChange={props.onChange}/> :
-                <textarea name={props.name} placeholder={props.placeholder} value={props.value}
-                          className={`field`}
+                <textarea id={props.id} placeholder={props.placeholder} value={props.value}
+                          className={`input-group__field`}
                           onChange={props.onChange}/>}
-        </>
+        </div>
     );
 }
 

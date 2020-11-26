@@ -17,7 +17,7 @@ class SendingForm extends React.Component {
     }
 
     handleInput(e) {
-        this.props.updateFieldAction({name: e.target.getAttribute('name'), value: e.target.value});
+        this.props.updateFieldAction({name: e.target.id, value: e.target.value});
     }
 
     render() {
@@ -25,28 +25,24 @@ class SendingForm extends React.Component {
             <div className="sending-form">
                 <DragZone/>
                 <div className="input-field">
-                    <label className="label">От кого</label>
-                    <Input type="input" name="from.name" value={this.props['from.name']} placeholder="Имя"
-                           onChange={this.handleInput} position="left"/>
-                    <Input type="input" name="from.email" value={this.props['from.email']} placeholder="Email"
-                           position="right" onChange={this.handleInput}/>
+                    <Input type="input" id="from.name" value={this.props['from.name']} placeholder="Имя" label="От кого"
+                           onChange={this.handleInput} position="input-group__field_left"/>
+                    <Input type="input" id="from.email" value={this.props['from.email']} placeholder="Email"
+                           onChange={this.handleInput} position="input-group__field_right"/>
                 </div>
                 <div className="input-field">
-                    <label className="label">Кому</label>
-                    <Input type="input" name="to.name" value={this.props['to.name']} placeholder="Имя"
-                           onChange={this.handleInput} position="left"/>
-                    <Input type="input" name="mca" value={this.props['mca']} placeholder="Email"
-                           onChange={this.handleInput} position="right"/>
+                    <Input type="input" id="to.name" value={this.props['to.name']} placeholder="Имя" label="Кому"
+                           onChange={this.handleInput} position="input-group__field_left"/>
+                    <Input type="input" id="mca" value={this.props['mca']} placeholder="Email"
+                           onChange={this.handleInput} position="input-group__field_right"/>
                 </div>
                 <div className="input-field">
-                    <label className="label">Тема письма</label>
-                    <Input type="input" name="subject" value={this.props['subject']} onChange={this.handleInput}
-                           placeholder="Тема"/>
+                    <Input type="input" is="subject" value={this.props['subject']} placeholder="Тема"
+                           label="Тема письма" onChange={this.handleInput}/>
                 </div>
                 <div className="input-field">
-                    <label className="label">Сообщение</label>
-                    <Input type="textarea" name="message" value={this.props['message']}
-                           onChange={this.handleInput} placeholder="Сообщение"/>
+                    <Input type="textarea" id="message" value={this.props['message']} placeholder="Сообщение"
+                           label="Сообщение" onChange={this.handleInput}/>
                 </div>
                 <div className="input-field">
                     <Attachments/>
