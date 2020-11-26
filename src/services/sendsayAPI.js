@@ -1,6 +1,7 @@
 import Sendsay from "sendsay-api";
 
 const sendsay = new Sendsay({apiKey: '19G37aBHzIr26V1NWF5kkqaVBguhD60740UgZmn_jXsLQrNuQkbPr79DPCqCu-5T2lBk5se4482wicksEcxteDx7M'});
+
 export const issueSendTest = async (fields) => {
     const requestBody = {
         'action': 'issue.send.test',
@@ -27,10 +28,10 @@ export const trackGet = async (trackId) => {
         'id': trackId
     }
     const response = await sendsay.request(requestBody);
-    if (response.obj['status'] <= -1) {
-        return response;
-    }
-    else {
+    if (response.obj['status'] > -1) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
         return await trackGet(trackId);
+    } else {
+        return response;
     }
 }
