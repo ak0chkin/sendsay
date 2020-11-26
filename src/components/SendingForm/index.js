@@ -3,30 +3,36 @@ import './index.css';
 import Input from "./Input";
 import Attachments from "./Attachments";
 import DragZone from "./DragZone";
-import {UPDATE_FIELD} from "../../constants/actionTypes";
+import {ADD_MESSAGE, UPDATE_FIELD} from "../../constants/actionTypes";
 import {connect} from "react-redux";
-import Sendsay from "sendsay-api";
+import {issueSendTest, trackGet} from "../../services/sendsayAPI";
 
 const updateField = (field) => ({type: UPDATE_FIELD, payload: field});
-const updateDisplay = (hidden) => ({type: UPDATE_FIELD, payload: hidden});
+const addMessage = (message) => ({type: ADD_MESSAGE, payload: message});
 
 class SendingForm extends React.Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
         this.handleInput = this.handleInput.bind(this);
-    }
-    componentDidMount() {
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInput(e) {
         this.props.updateFieldAction({name: e.target.id, value: e.target.value});
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        issueSendTest(this.props).then(data => {
+            const trackId =  data['track.id'];
+            this.props.addMessageAction({date: new Date(), subject: this.props['subject'], trackId: trackId});
+        });
+    }
+
     render() {
         return (
-            <form className="sending-form">
+            <form className="sending-form" onSubmit={this.handleSubmit}>
                 <DragZone/>
                 <h1>Отправлялка сообщений</h1>
                 <div className="input-field">
@@ -42,7 +48,7 @@ class SendingForm extends React.Component {
                            onChange={this.handleInput} position="input-group__field_right"/>
                 </div>
                 <div className="input-field">
-                    <Input type="input" is="subject" value={this.props['subject']}
+                    <Input type="input" id="subject" value={this.props['subject']}
                            label="Тема письма" onChange={this.handleInput}/>
                 </div>
                 <div className="input-field">
@@ -67,7 +73,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateFieldAction: field => dispatch(updateField(field)),
-        updateDisplay: hidden => dispatch(updateDisplay(hidden))
+        addMessageAction: message => dispatch(addMessage(message))
     }
 }
 

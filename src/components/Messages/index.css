@@ -1,0 +1,36 @@
+.messages {
+    display: flex;
+    width: 800px;
+    padding: 30px;
+    flex-direction: column;
+}
+
+.messages-table {
+    width: 100%;
+}
+
+.messages-table__tr {
+    height: 40px;
+}
+
+.messages-table__th {
+    color: #949494;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: start;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.messages-table__th:last-child {
+    text-align: end;
+}
+
+.messages-table__td:last-child {
+    text-align: end;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: normal;
+}

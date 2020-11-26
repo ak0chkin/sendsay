@@ -1,3 +1,3 @@
 export const UPDATE_FIELD = 'UPDATE_FIELD';
 export const ADD_ATTACHMENT = 'ADD_ATTACHMENT';
-export const UPDATE_DISPLAY = 'UPDATE_DISPLAY';
+export const ADD_MESSAGE = 'ADD_MESSAGE';

@@ -2,12 +2,12 @@ import {ADD_ATTACHMENT, UPDATE_FIELD} from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = {
-    'subject': '',
-    'from.name': '',
-    'from.email': '',
-    'to.name': '',
-    'mca': '',
-    'message': '',
+    'subject': 'Subject',
+    'from.name': 'fromName',
+    'from.email': 'from@email.com',
+    'to.name': 'toName',
+    'mca': 'mca@email.com',
+    'message': 'Message',
     'attaches': []
 }, action) => {
     switch (action.type) {
