@@ -44,7 +44,7 @@ class SendingForm extends React.Component {
                     <Input type="textarea" id="message" value={this.props['message']} placeholder="Сообщение"
                            label="Сообщение" onChange={this.handleInput}/>
                 </div>
-                <div className="input-field">
+                <div className="input-field input-field_column">
                     <Attachments/>
                 </div>
             </div>

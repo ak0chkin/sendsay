@@ -9,5 +9,8 @@
 
 .input-field {
     display: flex;
-    margin: 10px;
+    margin: 25px 30px;
+}
+.input-field_column {
+    flex-direction: column;
 }

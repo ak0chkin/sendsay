@@ -5,12 +5,26 @@
 .input-group__label {
     display: inline-block;
     color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    min-width: 2px;
 }
 
 .input-group__field {
     border-radius: 5px;
     border: 1px solid #dddddd;
     width: 100%;
+    height: 40px;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.input-group__field::placeholder {
+    font-size: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .input-group__field_left {
@@ -19,4 +33,6 @@
 
 .input-group__field_right {
     border-radius: 0 5px 5px 0;
+    width: calc(100% + 1px);
+    margin-left: -1px;
 }
