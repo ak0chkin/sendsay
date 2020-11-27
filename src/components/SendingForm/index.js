@@ -3,11 +3,12 @@ import './index.css';
 import Input from "./Input";
 import Attachments from "./Attachments";
 import DragZone from "./DragZone";
-import {ADD_MESSAGE, UPDATE_FIELD, UPDATE_STATUS} from "../../constants/actionTypes";
+import {ADD_MESSAGE, UPDATE_FIELD, UPDATE_STATUS, WIPE_FIELDS} from "../../constants/actionTypes";
 import {connect} from "react-redux";
 import {issueSendTest, trackGet} from "../../services/sendsayAPI";
 
 const updateField = (field) => ({type: UPDATE_FIELD, payload: field});
+const wipeFields = () => ({type: WIPE_FIELDS, payload: {}});
 const addMessage = (message) => ({type: ADD_MESSAGE, payload: message});
 const updateStatus = (status) => ({type: UPDATE_STATUS, payload: status});
 
@@ -26,6 +27,7 @@ class SendingForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         issueSendTest(this.props).then(data => {
+            this.props.wipeFieldsAction();
             const trackId =  data['track.id'];
             this.props.addMessageAction({'date': new Date(), 'subject': this.props['subject'], 'status': 'В очереди', 'trackId': trackId});
             trackGet(trackId).then(data => {
@@ -78,7 +80,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateFieldAction: field => dispatch(updateField(field)),
         addMessageAction: message => dispatch(addMessage(message)),
-        updateStatusAction: status => dispatch(updateStatus(status))
+        updateStatusAction: status => dispatch(updateStatus(status)),
+        wipeFieldsAction: () => dispatch(wipeFields())
     }
 }
 

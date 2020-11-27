@@ -1,4 +1,5 @@
 export const UPDATE_FIELD = 'UPDATE_FIELD';
+export const WIPE_FIELDS = 'WIPE_FIELDS';
 export const ADD_ATTACHMENT = 'ADD_ATTACHMENT';
 export const DELETE_ATTACHMENT = 'DELETE_ATTACHMENT';
 export const ADD_MESSAGE = 'ADD_MESSAGE';

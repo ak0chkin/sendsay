@@ -1,13 +1,13 @@
-import {ADD_ATTACHMENT, DELETE_ATTACHMENT, UPDATE_FIELD} from "../constants/actionTypes";
+import {ADD_ATTACHMENT, DELETE_ATTACHMENT, UPDATE_FIELD, WIPE_FIELDS} from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = {
-    'subject': 'Subject',
-    'from.name': 'Алексей',
-    'from.email': 'kochkin@protonmail.com',
-    'to.name': 'toName',
-    'mca': 'mca@email.com',
-    'message': 'Message',
+    'subject': '',
+    'from.name': '',
+    'from.email': '',
+    'to.name': '',
+    'mca': '',
+    'message': '',
     'attaches': []
 }, action) => {
     switch (action.type) {
@@ -15,6 +15,16 @@ export default (state = {
             return {
                 ...state,
                 [action.payload.name]: action.payload.value
+            }
+        case WIPE_FIELDS:
+            return {
+                'subject': '',
+                'from.name': '',
+                'from.email': '',
+                'to.name': '',
+                'mca': '',
+                'message': '',
+                'attaches': []
             }
         case ADD_ATTACHMENT:
             return {
