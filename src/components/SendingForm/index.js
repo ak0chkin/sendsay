@@ -27,9 +27,9 @@ class SendingForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         issueSendTest(this.props).then(data => {
-            this.props.wipeFieldsAction();
             const trackId =  data['track.id'];
             this.props.addMessageAction({'date': new Date(), 'subject': this.props['subject'], 'status': 'В очереди', 'trackId': trackId});
+            this.props.wipeFieldsAction();
             trackGet(trackId).then(data => {
                 this.props.updateStatusAction({'trackId': trackId, 'status': data.obj['status'] === '-1' ? 'Отправлено' : 'Ошибка'})
             });
