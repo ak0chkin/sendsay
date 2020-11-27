@@ -7,26 +7,71 @@
 }
 
 .attachment {
-    display: block;
+    display: flex;
     border-radius: 5px;
     border: 1px solid #dddddd;
     padding: 5px;
     margin-bottom: 10px;
+    align-content: center;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.attachment__name {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.attachment__name::before {
+    position: relative;
+    display: inline-block;
+    margin-right: .25rem;
+    background: url('paperclip.svg') no-repeat center;
+    width: 34px;
+    min-width: 34px;
+    height: 32px;
+    content: '';
+}
+
+.btn-delete {
+    display: flex;
+    align-items: center;
+    color: #ff6666;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-delete::before {
+    position: relative;
+    display: inline-block;
+    margin-right: .25rem;
+    background: url('trash.svg') no-repeat center;
+    width: 13px;
+    min-width: 13px;
+    height: 16px;
+    content: '';
 }
 
 .file-label {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    color: #0055FB;
 }
 
 .file-label::before {
     position: relative;
     display: inline-block;
-    top: 2px;
     margin-right: .25rem;
     background: url('clip.svg') no-repeat center;
     width: 17px;
+    min-width: 17px;
     height: 15px;
     content: '';
 }

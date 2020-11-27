@@ -1,15 +1,17 @@
 import React from 'react';
 import './index.css';
-import {ADD_ATTACHMENT} from "../../../constants/actionTypes";
+import {ADD_ATTACHMENT, DELETE_ATTACHMENT} from "../../../constants/actionTypes";
 import {connect} from "react-redux";
 import validateFile from "../../../utils/validateFile";
 
 const addAttachment = (attachment) => ({type: ADD_ATTACHMENT, payload: attachment});
+const deleteAttachment = (attachment) => ({type: DELETE_ATTACHMENT, payload:attachment});
 
 class Attachments extends React.Component {
     constructor(props) {
         super(props);
         this.handleAttach = this.handleAttach.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleAttach(e) {
@@ -27,9 +29,18 @@ class Attachments extends React.Component {
         }
     }
 
+    handleDelete(attachment) {
+        this.props.deleteAttachmentAction(attachment);
+    }
+
     render() {
         const attachments = this.props.attachments.map(item => (
-            <li key={item.name} className="attachment">{item.name}</li>));
+            <li key={item.name} className="attachment">
+                <div className="attachment__name">
+                    {item.name}
+                </div>
+                <button type="button" className="btn-delete" onClick={() => this.handleDelete(item)}>Удалить</button>
+            </li>));
         return (
             <>
                 {attachments.length !== 0 && <ul className="attachments">{attachments}</ul>}
@@ -47,7 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addAttachmentAction: attachment => dispatch(addAttachment(attachment))
+        addAttachmentAction: attachment => dispatch(addAttachment(attachment)),
+        deleteAttachmentAction: attachment => dispatch(deleteAttachment(attachment))
     }
 }
 
