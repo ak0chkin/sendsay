@@ -29,7 +29,12 @@ class Attachments extends React.Component {
 
     render() {
         const attachments = this.props.attachments.map(item => (
-            <li key={item.name} className="attachment">{item.name}</li>));
+            <li key={item.name} className="attachment">
+                <div className="attachment__name">
+                    {item.name}
+                </div>
+                <button type="button" className="btn-delete">Удалить</button>
+            </li>));
         return (
             <>
                 {attachments.length !== 0 && <ul className="attachments">{attachments}</ul>}
