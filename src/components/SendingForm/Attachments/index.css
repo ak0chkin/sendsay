@@ -59,14 +59,15 @@
 
 .file-label {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    color: #0055FB;
 }
 
 .file-label::before {
     position: relative;
     display: inline-block;
-    top: 2px;
     margin-right: .25rem;
     background: url('clip.svg') no-repeat center;
     width: 17px;
