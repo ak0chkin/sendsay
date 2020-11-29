@@ -34,7 +34,7 @@ class Attachments extends React.Component {
     }
 
     render() {
-        const attachments = this.props.attachments.map(item => (
+        const attachments = this.props.attaches.map(item => (
             <li key={item.name} className="attachment">
                 <div className="attachment__name">
                     {item.name}
@@ -53,7 +53,7 @@ class Attachments extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {attachments: [...state.form.attaches]}
+    return {...state.attachment}
 }
 
 const mapDispatchToProps = (dispatch) => {

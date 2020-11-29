@@ -81,7 +81,7 @@ class SendingForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {...state.form}
+    return {...state.form, ...state.attachment}
 }
 
 const mapDispatchToProps = (dispatch) => {

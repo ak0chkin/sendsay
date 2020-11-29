@@ -83,7 +83,7 @@ class DragZone extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {attachments: [...state.form.attaches]}
+    return {...state.attachment}
 }
 
 const mapDispatchToProps = (dispatch) => {
