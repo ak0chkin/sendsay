@@ -17,10 +17,10 @@ class Messages extends React.Component {
                 <td className={`messages-table__td
                 ${
                     item.status === 'Отправлено'
-                        ? 'messages-table__td_sent' 
+                        ? 'messages-table__td_sent'
                         : item.status === 'В очереди'
-                            ? 'messages-table__td_queue'
-                            : 'messages-table__td_error'
+                        ? 'messages-table__td_queue'
+                        : 'messages-table__td_error'
                 }`}>
                     {item.status}
                 </td>

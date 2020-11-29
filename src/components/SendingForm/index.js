@@ -27,11 +27,19 @@ class SendingForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         issueSendTest(this.props).then(data => {
-            const trackId =  data['track.id'];
-            this.props.addMessageAction({'date': new Date(), 'subject': this.props['subject'], 'status': 'В очереди', 'trackId': trackId});
+            const trackId = data['track.id'];
+            this.props.addMessageAction({
+                'date': new Date(),
+                'subject': this.props['subject'],
+                'status': 'В очереди',
+                'trackId': trackId
+            });
             this.props.wipeFieldsAction();
             trackGet(trackId).then(data => {
-                this.props.updateStatusAction({'trackId': trackId, 'status': data.obj['status'] === '-1' ? 'Отправлено' : 'Ошибка'})
+                this.props.updateStatusAction({
+                    'trackId': trackId,
+                    'status': data.obj['status'] === '-1' ? 'Отправлено' : 'Ошибка'
+                })
             });
         });
     }
@@ -39,27 +47,26 @@ class SendingForm extends React.Component {
     render() {
         return (
             <form className="sending-form" onSubmit={this.handleSubmit}>
-                <DragZone/>
                 <h1>Отправлялка сообщений</h1>
                 <div className="input-field">
                     <Input type="input" id="from.name" value={this.props['from.name']} placeholder="Имя" label="От кого"
-                           onChange={this.handleInput} position="input-group__field_left"/>
+                           onChange={e => this.handleInput(e, /(\w+){1,20}/)} position="input-group__field_left"/>
                     <Input type="input" id="from.email" value={this.props['from.email']} placeholder="Email"
-                           onChange={this.handleInput} position="input-group__field_right"/>
+                           onChange={e => this.handleInput(e, /^[a-z]+@[a-z]+\.[a-z]{2,}$/)} position="input-group__field_right"/>
                 </div>
                 <div className="input-field">
                     <Input type="input" id="to.name" value={this.props['to.name']} placeholder="Имя" label="Кому"
-                           onChange={this.handleInput} position="input-group__field_left"/>
+                           onChange={e => this.handleInput(e, /(\w+){1,20}/)} position="input-group__field_left"/>
                     <Input type="input" id="mca" value={this.props['mca']} placeholder="Email"
-                           onChange={this.handleInput} position="input-group__field_right"/>
+                           onChange={e => this.handleInput(e, /^[a-z]+@[a-z]+\.[a-z]{2,}$/)} position="input-group__field_right"/>
                 </div>
                 <div className="input-field">
                     <Input type="input" id="subject" value={this.props['subject']}
-                           label="Тема письма" onChange={this.handleInput}/>
+                           label="Тема письма" onChange={e => this.handleInput(e, /(\w+){1,20}/)}/>
                 </div>
                 <div className="input-field">
                     <Input type="textarea" id="message" value={this.props['message']}
-                           label="Сообщение" onChange={this.handleInput}/>
+                           label="Сообщение" onChange={e => this.handleInput(e, /(\w+){20,}/)}/>
                 </div>
                 <div className="input-field input-field_column">
                     <Attachments/>
@@ -67,6 +74,7 @@ class SendingForm extends React.Component {
                 <div className="input-field">
                     <button type="submit" className="btn-send">Отправить</button>
                 </div>
+                <DragZone/>
             </form>
         );
     }

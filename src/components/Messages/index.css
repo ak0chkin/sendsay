@@ -1,6 +1,6 @@
 .messages {
     display: flex;
-    width: 800px;
+    width: 100%;
     padding: 30px;
     flex-direction: column;
 }
@@ -40,8 +40,7 @@
 }
 
 .messages-table__td_sent {
-    color: #03A100;
-;
+    color: #03A100;;
 }
 
 .messages-table__td_queue {

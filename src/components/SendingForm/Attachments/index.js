@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import validateFile from "../../../utils/validateFile";
 
 const addAttachment = (attachment) => ({type: ADD_ATTACHMENT, payload: attachment});
-const deleteAttachment = (attachment) => ({type: DELETE_ATTACHMENT, payload:attachment});
+const deleteAttachment = (attachment) => ({type: DELETE_ATTACHMENT, payload: attachment});
 
 class Attachments extends React.Component {
     constructor(props) {

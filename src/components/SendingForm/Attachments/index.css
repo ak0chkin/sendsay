@@ -63,6 +63,7 @@
     align-items: center;
     cursor: pointer;
     color: #0055FB;
+    width: max-content;
 }
 
 .file-label::before {
