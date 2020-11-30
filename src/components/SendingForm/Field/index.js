@@ -14,7 +14,7 @@ export const renderField = (
                             className={`input-group__field input-group__field_textarea ${position ? position : ''}`}
                             rows="3"/>
             }
-            {touched && error && <span>{error}</span>}
+            {touched && error && <span className="input-group__error">{error}</span>}
         </div>
     </div>
 )

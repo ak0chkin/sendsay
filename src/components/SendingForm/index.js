@@ -3,7 +3,8 @@ import './index.css';
 import {renderField} from "./Field";
 import Attachments from "./Attachments";
 import DragZone from "./DragZone";
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
+import validate from "./validate";
 
 function SendingForm(props) {
     const {handleSubmit, reset} = props;
@@ -11,12 +12,12 @@ function SendingForm(props) {
         <form className="sending-form" onSubmit={handleSubmit}>
             <h1>Отправлялка сообщений</h1>
             <div className="input-field">
-                <Field name="from.name" tag="input" component={renderField} label="От кого"
+                <Field name="fromName" tag="input" component={renderField} label="От кого"
                        position="input-group__field_left"/>
-                <Field name="from.email" tag="input" component={renderField} position="input-group__field_right"/>
+                <Field name="fromEmail" tag="input" component={renderField} position="input-group__field_right"/>
             </div>
             <div className="input-field">
-                <Field name="to.name" tag="input" component={renderField} label="Кому"
+                <Field name="toName" tag="input" component={renderField} label="Кому"
                        position="input-group__field_left"/>
                 <Field name="mca" tag="input" component={renderField} position="input-group__field_right"/>
             </div>
@@ -37,5 +38,6 @@ function SendingForm(props) {
     );
 }
 export default reduxForm({
-    form: 'send'
+    form: 'send',
+    validate
 })(SendingForm);

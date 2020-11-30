@@ -7,9 +7,9 @@ export const issueSendTest = async (fields, attaches) => {
         'action': 'issue.send.test',
         'letter': {
             'subject': fields['subject'],
-            'from.name': fields['from']['name'],
-            'from.email': fields['from']['email'],
-            'to.name': fields['to']['name'],
+            'from.name': fields['fromName'],
+            'from.email': fields['fromEmail'],
+            'to.name': fields['toName'],
             'message': {'text': fields['message']},
             'attaches': attaches
         },
