@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
-import form from "./reducers/form";
 import message from "./reducers/message";
 import attachment from "./reducers/attachment";
+import {reducer as reduxFormReducer} from 'redux-form'
 
-export default combineReducers({attachment, form, message});
+export default combineReducers({attachment, form: reduxFormReducer, message});

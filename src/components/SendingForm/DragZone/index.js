@@ -48,7 +48,6 @@ class DragZone extends React.Component {
 
     fileDrop(e) {
         e.preventDefault();
-        console.log('drop');
         const attachment = e.dataTransfer.files[0];
         if (attachment && validateFile(attachment)) {
             const reader = new FileReader();
