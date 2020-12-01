@@ -25,7 +25,7 @@ class DragZone extends React.Component {
 
     componentWillUnmount() {
         const parent = document.getElementById('drop-container').parentElement;
-        parent.removeEventListener('dragleave', this.dragEnter);
+        parent.removeEventListener('dragenter', this.dragEnter);
     }
 
     dragEnter(e) {

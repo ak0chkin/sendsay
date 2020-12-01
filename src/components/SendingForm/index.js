@@ -3,7 +3,7 @@ import './index.css';
 import {renderField} from "./Field";
 import Attachments from "./Attachments";
 import DragZone from "./DragZone";
-import {Field, reduxForm, reset} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 import validate from "./validate";
 
 function SendingForm(props) {
@@ -12,14 +12,16 @@ function SendingForm(props) {
         <form className="sending-form" onSubmit={handleSubmit}>
             <h1>Отправлялка сообщений</h1>
             <div className="input-field">
-                <Field name="fromName" tag="input" component={renderField} label="От кого"
+                <Field name="fromName" tag="input" component={renderField} label="От кого" placeholder="Имя"
                        position="input-group__field_left"/>
-                <Field name="fromEmail" tag="input" component={renderField} position="input-group__field_right"/>
+                <Field name="fromEmail" tag="input" component={renderField} placeholder="Email"
+                       position="input-group__field_right"/>
             </div>
             <div className="input-field">
-                <Field name="toName" tag="input" component={renderField} label="Кому"
+                <Field name="toName" tag="input" component={renderField} label="Кому" placeholder="Имя"
                        position="input-group__field_left"/>
-                <Field name="mca" tag="input" component={renderField} position="input-group__field_right"/>
+                <Field name="mca" tag="input" component={renderField} placeholder="Email"
+                       position="input-group__field_right"/>
             </div>
             <div className="input-field">
                 <Field name="subject" tag="input" component={renderField} label="Тема письма"/>
@@ -37,6 +39,7 @@ function SendingForm(props) {
         </form>
     );
 }
+
 export default reduxForm({
     form: 'send',
     validate
