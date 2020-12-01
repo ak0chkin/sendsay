@@ -29,7 +29,6 @@ class DragZone extends React.Component {
     }
 
     dragEnter(e) {
-
         e.preventDefault();
         this.setState({
             hidden: false
@@ -45,8 +44,6 @@ class DragZone extends React.Component {
         this.setState({
             hidden: true
         });
-
-
     }
 
     fileDrop(e) {

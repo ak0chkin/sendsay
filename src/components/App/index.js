@@ -14,7 +14,7 @@ class App extends React.Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit = (fields) => {
