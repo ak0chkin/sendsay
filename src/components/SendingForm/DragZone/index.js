@@ -25,10 +25,11 @@ class DragZone extends React.Component {
 
     componentWillUnmount() {
         const parent = document.getElementById('drop-container').parentElement;
-        parent.removeEventListener('dragleave', this.dragLeave);
+        parent.removeEventListener('dragleave', this.dragEnter);
     }
 
     dragEnter(e) {
+
         e.preventDefault();
         this.setState({
             hidden: false
@@ -44,6 +45,8 @@ class DragZone extends React.Component {
         this.setState({
             hidden: true
         });
+
+
     }
 
     fileDrop(e) {

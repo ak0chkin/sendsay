@@ -16,6 +16,7 @@
 .drop-message {
     text-align: center;
     user-select: none;
+    pointer-events: none;
 }
 
 .hidden {
