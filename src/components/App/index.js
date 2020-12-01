@@ -40,7 +40,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <img className="logo" src={logo} alt="logo"/>
-                <SendingForm onSubmit={this.handleSubmit}/>
+                <SendingForm handleSubmit={this.handleSubmit}/>
                 <Messages/>
             </div>
         );
