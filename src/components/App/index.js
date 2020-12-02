@@ -17,7 +17,7 @@ class App extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit = (fields) => {
+    handleSubmit = async (fields) => {
         const {attaches} = this.props;
         issueSendTest(fields, attaches).then(data => {
             const trackId = data['track.id'];

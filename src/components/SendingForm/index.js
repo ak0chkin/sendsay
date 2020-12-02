@@ -5,13 +5,17 @@ import Attachments from "./Attachments";
 import DragZone from "./DragZone";
 import {Field, Form} from 'react-final-form'
 import validate from "./validate";
+import {WIPE_ATTACHMENTS} from "../../constants/actionTypes";
+import {connect} from "react-redux";
+
+const wipeAttachments = () => ({type: WIPE_ATTACHMENTS, payload: {}});
 
 function SendingForm(props) {
     const {handleSubmit} = props;
     return (
         <Form onSubmit={handleSubmit} validate={validate}
               render={({handleSubmit, form, submitting, pristine, values}) => (
-                  <form className="sending-form" onSubmit={handleSubmit}>
+                  <form className="sending-form" onSubmit={event => {handleSubmit(event).then(() => {form.restart(); props.wipeAttachmentsAction();})}}>
                       <h1>Отправлялка сообщений</h1>
                       <div className="input-field">
                           <Field name="fromName" tag="input" component={renderField} label="От кого" placeholder="Имя"
@@ -43,4 +47,10 @@ function SendingForm(props) {
     );
 }
 
-export default SendingForm;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        wipeAttachmentsAction: () => dispatch(wipeAttachments())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SendingForm);
