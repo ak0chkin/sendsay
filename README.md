@@ -1,6 +1,6 @@
 # Sendsay ([Demo](https://ak0chkin.github.io/sendsay/))
 
-Тестовое задание [Sendsay](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend)
+Тестовое задание [Sendsay](https://www.notion.so/Frontend-4263b61293224088b7c3f929b761f9e3)
 
 В каталоге проекта вы можете запустить:
 
