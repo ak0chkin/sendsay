@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/sendsay/static/css/main.027e0161.chunk.css",
+    "main.js": "/sendsay/static/js/main.fe00a704.chunk.js",
+    "main.js.map": "/sendsay/static/js/main.fe00a704.chunk.js.map",
+    "runtime-main.js": "/sendsay/static/js/runtime-main.224afc50.js",
+    "runtime-main.js.map": "/sendsay/static/js/runtime-main.224afc50.js.map",
+    "static/js/2.170ee092.chunk.js": "/sendsay/static/js/2.170ee092.chunk.js",
+    "static/js/2.170ee092.chunk.js.map": "/sendsay/static/js/2.170ee092.chunk.js.map",
+    "static/js/3.92c6abcc.chunk.js": "/sendsay/static/js/3.92c6abcc.chunk.js",
+    "static/js/3.92c6abcc.chunk.js.map": "/sendsay/static/js/3.92c6abcc.chunk.js.map",
+    "index.html": "/sendsay/index.html",
+    "static/css/main.027e0161.chunk.css.map": "/sendsay/static/css/main.027e0161.chunk.css.map",
+    "static/js/2.170ee092.chunk.js.LICENSE.txt": "/sendsay/static/js/2.170ee092.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/sendsay/static/media/trash.3e70278f.svg",
+    "static/media/logo.61ec3b45.svg": "/sendsay/static/media/logo.61ec3b45.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.224afc50.js",
+    "static/js/2.170ee092.chunk.js",
+    "static/css/main.027e0161.chunk.css",
+    "static/js/main.fe00a704.chunk.js"
+  ]
+}
