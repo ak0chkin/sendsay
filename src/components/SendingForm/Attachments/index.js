@@ -1,55 +1,50 @@
 import React from 'react';
 import './index.css';
-import {ADD_ATTACHMENT, DELETE_ATTACHMENT} from "../../../constants/actionTypes";
 import {connect} from "react-redux";
+import {addAttachment, deleteAttachment, updateAttachmentError} from "../../../action_creators/attachment";
 import validateFile from "../../../utils/validateFile";
 
-const addAttachment = (attachment) => ({type: ADD_ATTACHMENT, payload: attachment});
-const deleteAttachment = (attachment) => ({type: DELETE_ATTACHMENT, payload: attachment});
 
-class Attachments extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleAttach = this.handleAttach.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
-    }
-
-    handleAttach(e) {
+function Attachments(props) {
+    const handleAttach = (e) => {
         const attachment = e.target.files[0];
-        if (validateFile(attachment)) {
+        const validate = validateFile(attachment);
+        if (validate.value) {
             const reader = new FileReader();
             reader.readAsDataURL(attachment);
             reader.onload = () => {
-                this.props.addAttachmentAction({
+                props.addAttachmentAction({
                     'name': attachment.name,
                     'content': reader.result,
                     'encoding': 'base64'
                 });
             }
         }
+        props.attachmentErrorAction(validate.error);
     }
 
-    handleDelete(attachment) {
-        this.props.deleteAttachmentAction(attachment);
+    const handleDelete = (attachment) => {
+        props.deleteAttachmentAction(attachment);
     }
 
-    render() {
-        const attachments = this.props.attaches.map(item => (
-            <li key={item.name} className="attachment">
-                <div className="attachment__name">
-                    {item.name}
-                </div>
-                <button type="button" className="btn-delete" onClick={() => this.handleDelete(item)}>Удалить</button>
-            </li>));
-        return (
-            <>
-                {attachments.length !== 0 && <ul className="attachments">{attachments}</ul>}
-                <label htmlFor="file-input" className="file-label">Прикрепить файл
-                    <input id="file-input" type="file" onChange={this.handleAttach}/>
+    const attachments = props.attaches.map(item => (
+        <li key={item.name} className="attachment">
+            <div className="attachment__name">
+                {item.name}
+            </div>
+            <button type="button" className="btn-delete" onClick={() => handleDelete(item)}>Удалить</button>
+        </li>));
+    return (
+        <>
+            {attachments.length !== 0 && <ul className="attachments">{attachments}</ul>}
+            <div className="file">
+                <label htmlFor="file__input" className="file__label">Прикрепить файл
+                    <input id="file__input" type="file" onChange={handleAttach}/>
                 </label>
-            </>
-        );
-    }
+                {props.error && <span className="file__error">{props.error}</span>}
+            </div>
+        </>
+    );
 }
 
 const mapStateToProps = (state) => {
@@ -59,7 +54,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addAttachmentAction: attachment => dispatch(addAttachment(attachment)),
-        deleteAttachmentAction: attachment => dispatch(deleteAttachment(attachment))
+        deleteAttachmentAction: attachment => dispatch(deleteAttachment(attachment)),
+        attachmentErrorAction: error => dispatch(updateAttachmentError(error))
     }
 }
 

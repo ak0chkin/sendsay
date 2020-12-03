@@ -57,7 +57,7 @@
     content: '';
 }
 
-.file-label {
+.file__label {
     position: relative;
     display: flex;
     align-items: center;
@@ -66,7 +66,7 @@
     width: max-content;
 }
 
-.file-label::before {
+.file__label::before {
     position: relative;
     display: inline-block;
     margin-right: .25rem;
@@ -77,6 +77,11 @@
     content: '';
 }
 
-#file-input {
+#file__input {
     display: none;
+}
+
+.file__error {
+    font-size: 16px;
+    color: #ffc107;
 }

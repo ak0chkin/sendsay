@@ -3,12 +3,9 @@ import './index.css';
 import SendingForm from "../SendingForm";
 import Messages from "../Messages";
 import logo from "./logo.svg"
-import {ADD_MESSAGE, UPDATE_STATUS} from "../../constants/actionTypes";
 import {issueSendTest, trackGet} from "../../services/sendsayAPI";
 import {connect} from "react-redux";
-
-const addMessage = (message) => ({type: ADD_MESSAGE, payload: message});
-const updateStatus = (status) => ({type: UPDATE_STATUS, payload: status});
+import {addMessage, updateStatus} from "../../action_creators/message";
 
 class App extends React.Component {
     // eslint-disable-next-line no-useless-constructor
@@ -17,7 +14,7 @@ class App extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit = (fields) => {
+    handleSubmit = async (fields) => {
         const {attaches} = this.props;
         issueSendTest(fields, attaches).then(data => {
             const trackId = data['track.id'];

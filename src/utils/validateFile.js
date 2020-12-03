@@ -12,5 +12,11 @@ export default (file) => {
         'application/pdf',
         'application/zip'
     ];
-    return validTypes.indexOf(file.type) !== -1 && file.size <= 5242880;
+    if (validTypes.indexOf(file.type) === -1) {
+        return {value: false, error: 'Недопустимый тип файла'}
+    }
+    if (file.size > 5242880) {
+        return {value: false, error: 'Превышен допустимый размер (5 МБ)'}
+    }
+    return {value: true, error: ''};
 }

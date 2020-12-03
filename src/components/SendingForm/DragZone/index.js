@@ -1,10 +1,8 @@
 import React from 'react';
 import './index.css';
-import {ADD_ATTACHMENT} from "../../../constants/actionTypes";
 import {connect} from "react-redux";
 import validateFile from "../../../utils/validateFile";
-
-const addAttachment = (attachment) => ({type: ADD_ATTACHMENT, payload: attachment});
+import {addAttachment, updateAttachmentError} from "../../../action_creators/attachment";
 
 class DragZone extends React.Component {
     constructor(props) {
@@ -49,7 +47,8 @@ class DragZone extends React.Component {
     fileDrop(e) {
         e.preventDefault();
         const attachment = e.dataTransfer.files[0];
-        if (attachment && validateFile(attachment)) {
+        const validate = validateFile(attachment);
+        if (attachment && validate.value) {
             const reader = new FileReader();
             reader.readAsDataURL(attachment);
             reader.onload = () => {
@@ -60,6 +59,7 @@ class DragZone extends React.Component {
                 });
             }
         }
+        this.props.updateAttachmentErrorAction(validate.error);
         this.setState({
             hidden: true
         });
@@ -87,7 +87,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addAttachmentAction: attachment => dispatch(addAttachment(attachment))
+        addAttachmentAction: attachment => dispatch(addAttachment(attachment)),
+        updateAttachmentErrorAction: error => dispatch(updateAttachmentError(error))
     }
 }
 
