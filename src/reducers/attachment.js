@@ -1,4 +1,4 @@
-import {ADD_ATTACHMENT, ATTACHMENT_ERROR, DELETE_ATTACHMENT} from "../constants/actionTypes";
+import {ADD_ATTACHMENT, DELETE_ATTACHMENT, WIPE_ATTACHMENTS, ATTACHMENT_ERROR} from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = {
@@ -15,6 +15,11 @@ export default (state = {
             return {
                 ...state,
                 'attaches': [...state.attaches.filter(item => item !== action.payload)]
+            }
+        case WIPE_ATTACHMENTS:
+            return {
+                'attaches': [],
+                'error': ''
             }
         case ATTACHMENT_ERROR:
             return {
